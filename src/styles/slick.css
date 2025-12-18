@@ -1,0 +1,101 @@
+/* Slick Carousel Styles */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slick-slide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px;
+}
+
+.slick-slide > div {
+  height: 100%;
+}
+
+.slick-initialized .slick-slide {
+  display: block;
+}
+
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+
+/* Mobile Products Slider Styles */
+.mobile-products-slider .slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+.mobile-products-slider .slick-slide {
+  height: auto;
+  display: flex !important;
+}
+
+.mobile-products-slider .slick-slide > div {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Dots styling for mobile slider */
+.mobile-products-slider .slick-dots {
+  display: flex !important;
+  justify-content: center;
+  gap: 8px;
+  padding: 0;
+  margin: 24px 0 0 0;
+  list-style: none;
+}
+
+.mobile-products-slider .slick-dots li {
+  margin: 0;
+}
+
+.mobile-products-slider .slick-dots li button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #d1d5db;
+  cursor: pointer;
+  font-size: 0;
+  transition: all 0.3s ease;
+}
+
+.mobile-products-slider .slick-dots li.slick-active button {
+  width: 32px;
+  border-radius: 4px;
+  background: #FFD500;
+}
+
+.mobile-products-slider .slick-dots li button:hover {
+  background: #9ca3af;
+}
+
+.mobile-products-slider .slick-dots li.slick-active button:hover {
+  background: #FFD500;
+}
