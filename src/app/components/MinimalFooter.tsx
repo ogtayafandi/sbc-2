@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Instagram, Linkedin } from 'lucide-react';
-// @ts-ignore
 import logo from '../../../public/assets/babb0ac6774f0a04c09783266ac1d27f08c12fad.png';
 
 export function MinimalFooter() {

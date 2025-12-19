@@ -1,4 +1,3 @@
-// @ts-ignore
 import React from "react";
 import { ModernHeader } from "./components/ModernHeader";
 import { EditorialHero } from "./components/EditorialHero";

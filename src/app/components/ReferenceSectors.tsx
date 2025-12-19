@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
+import Slider from 'react-slick';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const sectors = [
   {
@@ -54,118 +56,177 @@ const sectors = [
   },
 ];
 
+const SectorCard = ({ sector, index, hoveredId, setHoveredId }: { 
+  sector: typeof sectors[0]; 
+  index: number; 
+  hoveredId: number | null; 
+  setHoveredId: (id: number | null) => void;
+}) => (
+  <motion.div
+    key={sector.id}
+    className="group relative aspect-square cursor-pointer mx-2"
+    initial={{ opacity: 0, scale: 0.9 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay: index * 0.05 }}
+    onHoverStart={() => setHoveredId(sector.id)}
+    onHoverEnd={() => setHoveredId(null)}
+  >
+    {/* Card container */}
+    <div className="relative h-full rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm">
+      {/* Image */}
+      <motion.div 
+        className="absolute inset-0"
+        animate={{
+          scale: hoveredId === sector.id ? 1.1 : 1,
+        }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+      >
+        <div 
+          className="w-full h-full bg-cover bg-center"
+          style={{ backgroundImage: `url(${sector.image})` }}
+        />
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0078C8] via-[#0078C8]/60 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-300" />
+      </motion.div>
+
+      {/* Content */}
+      <div className="absolute inset-0 p-6 flex flex-col justify-end">
+        <motion.h3 
+          className="text-white text-lg leading-tight tracking-tight"
+          animate={{
+            y: hoveredId === sector.id ? -4 : 0,
+          }}
+          transition={{ duration: 0.3 }}
+        >
+          {sector.name}
+        </motion.h3>
+        
+        {/* Hover accent line */}
+        <motion.div
+          className="mt-4 h-1 bg-[#FFD500] rounded-full"
+          initial={{ width: 0 }}
+          animate={{ 
+            width: hoveredId === sector.id ? '100%' : '40px' 
+          }}
+          transition={{ duration: 0.3 }}
+        />
+      </div>
+
+      {/* Border hover effect */}
+      <motion.div
+        className="absolute inset-0 border-2 border-transparent rounded-2xl"
+        animate={{
+          borderColor: hoveredId === sector.id ? 'rgba(255, 213, 0, 0.5)' : 'transparent',
+        }}
+        transition={{ duration: 0.3 }}
+      />
+    </div>
+  </motion.div>
+);
+
 export function ReferenceSectors() {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const sliderRef = useRef<Slider>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
+    arrows: false,
+  };
 
   return (
-    <section className="py-32 bg-[#0078C8] relative overflow-hidden">
+    <section className="py-20 md:py-32 bg-[#0078C8] relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#FFD500]/10 rounded-full blur-3xl" />
       
-      <div className="max-w-[1400px] mx-auto px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-8 relative z-10">
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-block mb-6 px-4 py-1 bg-white/10 rounded-full">
-            <span className="text-sm tracking-wide text-white/80">Sektorlar</span>
+          <div className="inline-block mb-4 md:mb-6 px-3 md:px-4 py-1 bg-white/10 rounded-full">
+            <span className="text-xs md:text-sm tracking-wide text-white/80">Sektorlar</span>
           </div>
-          <h2 className="text-6xl md:text-7xl text-[#FFD500] tracking-tight mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[#FFD500] tracking-tight mb-4 md:mb-6">
             İstinad Sektorlarımız
           </h2>
-          <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed px-4">
             Müxtəlif sahələrdə uğurla həyata keçirilmiş layihələrimiz
           </p>
         </motion.div>
 
-        {/* Sectors Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {sectors.map((sector, index) => (
-            <motion.div
-              key={sector.id}
-              className="group relative aspect-square cursor-pointer"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              onHoverStart={() => setHoveredId(sector.id)}
-              onHoverEnd={() => setHoveredId(null)}
-            >
-              {/* Card container */}
-              <div className="relative h-full rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm">
-                {/* Image */}
-                <motion.div 
-                  className="absolute inset-0"
-                  animate={{
-                    scale: hoveredId === sector.id ? 1.1 : 1,
-                  }}
-                  transition={{ duration: 0.4, ease: 'easeOut' }}
-                >
-                  <div 
-                    className="w-full h-full bg-cover bg-center"
-                    style={{ backgroundImage: `url(${sector.image})` }}
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0078C8] via-[#0078C8]/60 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-300" />
-                </motion.div>
-
-                {/* Content */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                  <motion.h3 
-                    className="text-white text-lg leading-tight tracking-tight"
-                    animate={{
-                      y: hoveredId === sector.id ? -4 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {sector.name}
-                  </motion.h3>
-                  
-                  {/* Hover accent line */}
-                  <motion.div
-                    className="mt-4 h-1 bg-[#FFD500] rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ 
-                      width: hoveredId === sector.id ? '100%' : '40px' 
-                    }}
-                    transition={{ duration: 0.3 }}
+        {/* Sectors - Grid on Desktop, Slider on Mobile */}
+        {isMobile ? (
+          <div className="relative">
+            <Slider ref={sliderRef} {...settings} className="sectors-slider">
+              {sectors.map((sector, index) => (
+                <div key={sector.id}>
+                  <SectorCard 
+                    sector={sector} 
+                    index={index} 
+                    hoveredId={hoveredId} 
+                    setHoveredId={setHoveredId} 
                   />
                 </div>
+              ))}
+            </Slider>
 
-                {/* Border hover effect */}
-                <motion.div
-                  className="absolute inset-0 border-2 border-transparent rounded-2xl"
-                  animate={{
-                    borderColor: hoveredId === sector.id ? 'rgba(255, 213, 0, 0.5)' : 'transparent',
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <motion.div 
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <motion.button
-            className="px-8 py-4 bg-white text-[#0078C8] rounded-full hover:bg-[#FFD500] hover:text-gray-900 transition-all"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Bütün Layihələrə Baxın
-          </motion.button>
-        </motion.div>
+            {/* Navigation Arrows for Mobile */}
+            <div className="flex justify-center gap-4 mt-8">
+              <motion.button
+                onClick={() => sliderRef.current?.slickPrev()}
+                className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#FFD500] transition-all"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronLeft className="w-6 h-6 text-white" />
+              </motion.button>
+              <motion.button
+                onClick={() => sliderRef.current?.slickNext()}
+                className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#FFD500] transition-all"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronRight className="w-6 h-6 text-white" />
+              </motion.button>
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {sectors.map((sector, index) => (
+              <SectorCard 
+                key={sector.id}
+                sector={sector} 
+                index={index} 
+                hoveredId={hoveredId} 
+                setHoveredId={setHoveredId} 
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

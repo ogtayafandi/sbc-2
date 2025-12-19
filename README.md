@@ -1,7 +1,7 @@
 
-  # Homepage Redesign for sbcotomasyon.az
+  # Homepage Redesign for sbcotomasyon.az (Copy)
 
-  This is a code bundle for Homepage Redesign for sbcotomasyon.az. The original project is available at https://www.figma.com/design/kaIjqWQyA5dAFmFmd8hb3d/Homepage-Redesign-for-sbcotomasyon.az.
+  This is a code bundle for Homepage Redesign for sbcotomasyon.az (Copy). The original project is available at https://www.figma.com/design/TpFLvDuGqnEmaTr1rm0RPN/Homepage-Redesign-for-sbcotomasyon.az--Copy-.
 
   ## Running the code
 

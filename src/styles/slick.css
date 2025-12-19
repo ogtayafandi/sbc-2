@@ -99,3 +99,60 @@
 .mobile-products-slider .slick-dots li.slick-active button:hover {
   background: #FFD500;
 }
+
+/* Sectors Slider Styles */
+.sectors-slider .slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+.sectors-slider .slick-slide {
+  height: auto;
+  display: flex !important;
+}
+
+.sectors-slider .slick-slide > div {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Dots styling for sectors slider */
+.sectors-slider .slick-dots {
+  display: flex !important;
+  justify-content: center;
+  gap: 8px;
+  padding: 0;
+  margin: 24px 0 0 0;
+  list-style: none;
+}
+
+.sectors-slider .slick-dots li {
+  margin: 0;
+}
+
+.sectors-slider .slick-dots li button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  font-size: 0;
+  transition: all 0.3s ease;
+}
+
+.sectors-slider .slick-dots li.slick-active button {
+  width: 32px;
+  border-radius: 4px;
+  background: #FFD500;
+}
+
+.sectors-slider .slick-dots li button:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.sectors-slider .slick-dots li.slick-active button:hover {
+  background: #FFD500;
+}
