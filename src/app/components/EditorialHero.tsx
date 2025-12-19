@@ -58,7 +58,7 @@ export function EditorialHero() {
       </AnimatePresence>
 
       {/* Content */}
-      <div className="relative max-w-[1400px] mx-auto px-6 md:px-8 py-20 md:py-32 w-full">
+      <div className="relative max-w-[1400px] mx-auto px-6 md:px-8 py-16 md:py-20 w-full">
         <div className="max-w-3xl">
           {/* Small label */}
           <motion.div

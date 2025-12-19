@@ -153,7 +153,7 @@ export function ReferenceSectors() {
   };
 
   return (
-    <section className="py-20 md:py-32 bg-[#0078C8] relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-[#0078C8] relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#FFD500]/10 rounded-full blur-3xl" />

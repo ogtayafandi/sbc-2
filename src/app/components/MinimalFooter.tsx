@@ -6,9 +6,9 @@ import logo from '../../../public/assets/babb0ac6774f0a04c09783266ac1d27f08c12fa
 export function MinimalFooter() {
   return (
     <footer className="bg-white border-t border-gray-100">
-      <div className="max-w-[1400px] mx-auto px-8 py-16">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-8 py-12">
         {/* Main footer content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
           {/* Logo and tagline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

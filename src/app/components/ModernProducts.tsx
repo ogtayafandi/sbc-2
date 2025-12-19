@@ -134,20 +134,20 @@ export function ModernProducts() {
   };
 
   return (
-    <section className="py-32 bg-gray-50">
-      <div className="max-w-[1400px] mx-auto px-8">
+    <section className="py-20 bg-gray-50">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-8">
         {/* Section Header - Asymmetric */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 mb-16 md:mb-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-block mb-6 px-4 py-1 bg-[#0078C8]/10 rounded-full">
-              <span className="text-sm tracking-wide text-[#0078C8]">Məhsullar</span>
+            <div className="inline-block mb-4 md:mb-6 px-3 md:px-4 py-1 bg-[#0078C8]/10 rounded-full">
+              <span className="text-xs md:text-sm tracking-wide text-[#0078C8]">Məhsullar</span>
             </div>
-            <h2 className="text-6xl md:text-7xl tracking-tight text-gray-900 leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight text-gray-900 leading-tight">
               Müasir
               <span className="block text-[#0078C8]">Texnologiya</span>
             </h2>
@@ -160,7 +160,7 @@ export function ModernProducts() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <p className="text-xl text-gray-600 leading-relaxed max-w-lg mb-8">
+            <p className="text-base md:text-xl text-gray-600 leading-relaxed max-w-lg mb-6 md:mb-8">
               Bina avtomatlaşdırma sistemləri üçün yüksək texnologiyalı həllər. 
               Enerji səmərəliliyi və rahatlığı birləşdirən innovativ məhsullar.
             </p>
